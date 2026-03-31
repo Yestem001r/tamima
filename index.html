@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tamima — натуральные медовые пасты и сиропы оптом из Казахстана. 34 позиции, сертификаты ЕАС, Халяль, ГОСТ.">
+  <meta name="theme-color" content="#C47A10">
+  <link rel="icon" href="assets/img/logo.png" type="image/png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Tamima — Медовые продукты оптом">
+  <meta property="og:description" content="Натуральные медовые пасты и сиропы оптом из Казахстана. 34 позиции.">
+  <meta property="og:image" content="assets/img/logo.png">
+  <meta property="og:type" content="website">
+
+  <title>Tamima — Медовые продукты оптом</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Bee canvas (fixed overlay) -->
+<canvas id="bee-canvas"></canvas>
+
+<!-- ═══════════════════════════════════
+     HEADER
+═══════════════════════════════════ -->
+<header id="hdr">
+
+  <a href="#" class="logo">
+    <img src="assets/img/logo.png" class="logo-img" alt="Tamima" loading="eager" fetchpriority="high" decoding="async">
+  </a>
+
+  <nav>
+    <a href="#why" data-i18n="nav-about">О нас</a>
+    <a href="#catalog" data-i18n="nav-catalog">Каталог</a>
+    <a href="#cta-s" data-i18n="nav-coop">Сотрудничество</a>
+  </nav>
+
+  <div class="hdr-right">
+    <a href="https://wa.me/77076679110?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D0%BD%D0%BE%20%D1%81%D0%BE%D1%82%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE"
+       class="btn btn-wa btn-sm" target="_blank">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+
+  <button class="hamburger" id="hamburger" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
+
+</header>
+
+<!-- Mobile menu -->
+<div class="mob-overlay" id="mob-overlay"></div>
+<nav class="mob-menu" id="mob-menu">
+  <a href="#why"     class="mob-link" data-i18n="nav-about">О нас</a>
+  <a href="#catalog" class="mob-link" data-i18n="nav-catalog">Каталог</a>
+  <a href="#cta-s"   class="mob-link" data-i18n="nav-coop">Сотрудничество</a>
+  <a href="https://wa.me/77076679110?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D0%BD%D0%BE%20%D1%81%D0%BE%D1%82%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE"
+     class="btn btn-amber mob-wa" target="_blank" data-i18n="btn-wa">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Написать в WhatsApp
+  </a>
+</nav>
+
+
+<!-- ═══════════════════════════════════
+     HERO — golden honey, two-column
+═══════════════════════════════════ -->
+<section id="hero">
+
+  <!-- Floating hex particles (filled by JS) -->
+  <div class="hero-particles" aria-hidden="true" id="hero-particles"></div>
+
+  <div class="hero-inner">
+
+    <!-- LEFT: content -->
+    <div class="hero-content" id="hero-content">
+      <div class="hero-tag">
+        <span data-i18n="hero-tag-supply">Оптовые поставки</span>
+        <span class="tag-dot">·</span>
+        <span data-i18n="hero-tag-kz">Казахстан</span>
+      </div>
+      <h1 class="hero-title" data-i18n="hero-title" data-i18n-html>
+        Природное решение<br>
+        <span class="hero-title-accent">для вашего здоровья</span>
+      </h1>
+      <p class="hero-sub" data-i18n="hero-sub" data-i18n-html>
+        Медовые пасты и сиропы из Казахстана.<br>
+        68 позиций · Халяль · ЕАС
+      </p>
+      <div class="hero-actions">
+        <a href="https://wa.me/77076679110?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D0%BD%D0%BE%20%D1%81%D0%BE%D1%82%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE"
+           class="btn btn-amber btn-lg" target="_blank" data-i18n="btn-wa">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Написать в WhatsApp
+        </a>
+        <a href="#catalog" class="btn btn-ghost btn-lg" data-i18n="btn-catalog">Смотреть каталог →</a>
+      </div>
+
+      <!-- Trust badges — prominent, labeled -->
+      <div class="hero-trust">
+        <span class="hero-trust-label" data-i18n="hero-certified">Сертифицировано</span>
+        <div class="hero-badges-row">
+          <div class="hbadge-lg" title="Халяль">
+            <div class="hbadge-icon">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <rect width="40" height="40" rx="6" fill="#1A7A3A"/>
+                <text x="20" y="17" text-anchor="middle" font-family="serif" font-size="11" fill="#fff" font-weight="700">حلال</text>
+                <text x="20" y="30" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="6.5" fill="rgba(255,255,255,0.9)" font-weight="800" letter-spacing="0.06em">ХАЛЯЛЬ</text>
+              </svg>
+            </div>
+            <span class="hbadge-label" data-i18n="badge-halal">Халяль</span>
+          </div>
+          <div class="hbadge-lg" title="Сделано в Казахстане">
+            <div class="hbadge-icon"><img src="assets/img/badge-kz.png" alt="Сделано в Казахстане"></div>
+            <span class="hbadge-label" data-i18n="badge-kz">Сделано в КЗ</span>
+          </div>
+          <div class="hbadge-lg" title="ЕАС">
+            <div class="hbadge-icon"><img src="assets/img/badge-eac.png" alt="ЕАС"></div>
+            <span class="hbadge-label" data-i18n="badge-eac">ЕАС</span>
+          </div>
+          <div class="hbadge-lg" title="Без ГМО">
+            <div class="hbadge-icon"><img src="assets/img/badge-gmo.png" alt="Без ГМО"></div>
+            <span class="hbadge-label" data-i18n="badge-gmo">Без ГМО</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: video on honeycomb -->
+    <div class="hero-video-wrap" id="hero-video-wrap">
+      <div class="hvc-honeycomb" aria-hidden="true"></div>
+      <div class="hvc-frame">
+        <iframe
+          class="hvc-iframe"
+          src="https://www.youtube.com/embed/wlP5KL3Ene4?autoplay=1&mute=1&loop=1&playlist=wlP5KL3Ene4&controls=0&showinfo=0&rel=0&modestbranding=1"
+          allow="autoplay; fullscreen"
+          allowfullscreen
+          title="Tamima видео"
+        ></iframe>
+        <div class="hvc-glow"></div>
+      </div>
+      <div class="hvc-hex hvc-hex-1"></div>
+      <div class="hvc-hex hvc-hex-2"></div>
+      <div class="hvc-hex hvc-hex-3"></div>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ═══════════════════════════════════
+     WHY US
+═══════════════════════════════════ -->
+<section id="why" class="section">
+  <div class="drip"></div>
+  <div class="container">
+    <span class="s-label fi" data-i18n="why-label">Почему Tamima</span>
+    <h2 class="s-title fi" data-i18n="why-title" data-i18n-html>Выбирайте <span style="color:var(--amber)">нас</span></h2>
+    <p class="s-sub fi" data-i18n="why-sub">Мы не просто поставщик. Мы партнёр с продуктом, за которым стоит реальное знание.</p>
+    <div class="why-grid">
+      <div class="wc">
+        <div class="wc-img">
+          <img src="assets/why/травники 250 лет.jpg" alt="Рецепты 250 лет" loading="lazy" decoding="async">
+        </div>
+        <div class="wc-n">01</div>
+        <h3 data-i18n="why-h1">Рецепты 250 лет</h3>
+        <p data-i18n="why-d1">Составы создаются травниками с практикой более 250 лет. Знания, которые передаются из поколения в поколение.</p>
+      </div>
+      <div class="wc">
+        <div class="wc-img">
+          <img src="assets/why/мед.jpg" alt="Зрелый мёд" loading="lazy" decoding="async">
+        </div>
+        <div class="wc-n">02</div>
+        <h3 data-i18n="why-h2">Зрелый мёд</h3>
+        <p data-i18n="why-d2">Мы используем мёд с нужной влажностью и правильной консистенцией. Не расслаивается, сохраняет качество при хранении.</p>
+      </div>
+      <div class="wc">
+        <div class="wc-img">
+          <img src="assets/why/травники.jpg" alt="Легальный сбор" loading="lazy" decoding="async">
+        </div>
+        <div class="wc-n">03</div>
+        <h3 data-i18n="why-h3">Легальный сбор</h3>
+        <p data-i18n="why-d3">Сырьё собирается по лесному билету. Нет рисков с проверками, нет серых поставок, прозрачное происхождение.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     CATALOG
+═══════════════════════════════════ -->
+<section id="catalog" class="section">
+  <div class="drip"></div>
+  <div class="container">
+    <div class="cat-hdr">
+      <div>
+        <span class="s-label fi" data-i18n="cat-label">Ассортимент</span>
+        <h2 class="s-title fi" style="margin-bottom:8px" data-i18n="cat-title" data-i18n-html>
+          68 <span style="color:var(--amber)">позиций</span>
+        </h2>
+        <p class="s-sub fi" style="margin-bottom:0" data-i18n="cat-sub">
+          Медовые пасты и натуральные сиропы из Казахстана.
+        </p>
+      </div>
+      <div class="cat-hdr-actions fir">
+        <a href="#cta-s" class="btn btn-amber" data-i18n="cat-price-btn">Запросить прайс →</a>
+        <a href="https://drive.google.com/file/d/1NXCxVFi7oKNzRHc4AXdVLWQ-ZEpqplkJ/view" class="btn btn-ghost-dark" target="_blank" data-i18n="cat-download-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Скачать каталог
+        </a>
+      </div>
+    </div>
+
+    <div class="cat-filter-wrap">
+    <div class="cat-filter fi">
+      <button class="cat-btn active" data-filter="all"><span data-i18n="cat-filter-all">Все</span> <span class="cat-cnt"></span></button>
+      <button class="cat-btn" data-filter="heart">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <span data-i18n="cat-filter-heart">Сердце и сосуды</span> <span class="cat-cnt"></span>
+      </button>
+      <button class="cat-btn" data-filter="weight">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span data-i18n="cat-filter-weight">Вес и обмен</span> <span class="cat-cnt"></span>
+      </button>
+      <button class="cat-btn" data-filter="digestion">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2v6a3 3 0 0 0 6 0V2"/><path d="M6 10a6 6 0 0 0 12 0"/><path d="M6 14c0 4 2 6 6 6s6-2 6-6"/></svg>
+        <span data-i18n="cat-filter-digestion">ЖКТ</span> <span class="cat-cnt"></span>
+      </button>
+      <button class="cat-btn" data-filter="men">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="14" r="6"/><path d="M18 6l-4 4M22 2l-4 4m0-4h4v4"/></svg>
+        <span data-i18n="cat-filter-men">Мужское</span> <span class="cat-cnt"></span>
+      </button>
+      <button class="cat-btn" data-filter="women">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M12 14v6M9 17h6"/></svg>
+        <span data-i18n="cat-filter-women">Женское</span> <span class="cat-cnt"></span>
+      </button>
+      <button class="cat-btn" data-filter="immunity">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l7 3v5c0 5-3.5 9.5-7 11C8.5 19.5 5 15 5 10V5l7-3z"/></svg>
+        <span data-i18n="cat-filter-immunity">Иммунитет</span> <span class="cat-cnt"></span>
+      </button>
+      <button class="cat-btn" data-filter="habits">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        <span data-i18n="cat-filter-habits">Вредные привычки</span> <span class="cat-cnt"></span>
+      </button>
+    </div>
+    </div>
+
+    <div id="cat-grid" class="cat-grid"></div>
+
+    <div class="cat-more-wrap">
+      <button class="cat-more" id="cat-more">
+        <span data-i18n="cat-more-btn">Показать ещё</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     CUSTOMER REVIEWS
+═══════════════════════════════════ -->
+<section id="reviews" class="section" style="background:#FFFAF5">
+  <div class="container">
+    <span class="s-label fi" data-i18n="rev-label">Отзывы</span>
+    <h2 class="s-title fi" data-i18n="rev-title" data-i18n-html>Что говорят <span style="color:var(--amber)">клиенты</span></h2>
+    <p class="s-sub fi" data-i18n="rev-sub">Реальные отзывы наших покупателей</p>
+    <div class="review-pair">
+      <div class="review-card review-card-real">
+        <div class="review-video">
+          <iframe src="https://www.youtube.com/embed/eYknFWNTYUw" title="Отзыв клиента" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="review-name">Видео-отзыв</p>
+      </div>
+      <div class="review-card review-card-real">
+        <div class="review-video">
+          <iframe src="https://www.youtube.com/embed/D0Av6MA8v4U" title="Отзыв клиента" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="review-name">Видео-отзыв</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     PRODUCTION
+═══════════════════════════════════ -->
+<section id="production" class="section" style="background:#FFF8F2">
+  <div class="drip"></div>
+  <div class="container">
+    <span class="s-label fi" data-i18n="prod-label">Производство</span>
+    <h2 class="s-title fi" data-i18n="prod-title" data-i18n-html>С нами <span style="color:var(--amber)">стабильность</span></h2>
+    <p class="s-sub fi" data-i18n="prod-sub">Собственное производство в Казахстане. Полный цикл от сырья до упаковки.</p>
+    <div class="prod-videos">
+      <div class="prod-video-card fi">
+        <div class="prod-video-frame">
+          <div class="prod-cover">
+            <div class="prod-cover-play">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span class="prod-cover-label" data-i18n="prod-vid1">Видео с производства</span>
+          </div>
+          <video class="prod-native-video" controls playsinline preload="metadata">
+            <source src="assets/video/производство тамимы.MOV" type="video/quicktime">
+            <source src="assets/video/производство тамимы.MOV" type="video/mp4">
+          </video>
+        </div>
+        <h3 data-i18n="prod-h1">Наш цех</h3>
+        <p data-i18n="prod-d1">Современное оборудование и строгий контроль качества</p>
+      </div>
+      <div class="prod-video-card fi">
+        <div class="prod-video-frame">
+          <div class="prod-cover">
+            <div class="prod-cover-play">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span class="prod-cover-label" data-i18n="prod-vid2">Процесс создания</span>
+          </div>
+          <video class="prod-native-video" controls playsinline preload="metadata">
+            <source src="assets/video/сиропы производство.mp4" type="video/mp4">
+          </video>
+        </div>
+        <h3 data-i18n="prod-h2">От сырья до продукта</h3>
+        <p data-i18n="prod-d2">Каждый этап под контролем технологов</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     CERTIFICATES
+═══════════════════════════════════ -->
+<section id="certs" class="section" style="background:#fff">
+  <div class="drip"></div>
+  <div class="container">
+    <span class="s-label fi" data-i18n="cert-label">Качество подтверждено</span>
+    <h2 class="s-title fi" data-i18n="cert-title" data-i18n-html>Наши <span style="color:var(--amber)">сертификаты</span></h2>
+    <p class="s-sub fi" data-i18n="cert-sub">Полный пакет документов. Халяль, ЕАС, ГОСТ — всё прозрачно.</p>
+    <div class="cert-layout fi" id="cert-grid">
+
+      <!-- Real certificate photos -->
+      <div class="cert-photos">
+        <a href="assets/certs/eas-tamima.pdf" target="_blank" class="cert-photo-card cert-photo-main">
+          <div class="cert-photo-img-wrap">
+            <img src="assets/certs/cert-eas.png" alt="ЕАС Декларация о соответствии" loading="lazy">
+          </div>
+          <div class="cert-photo-footer">
+            <div>
+              <span class="cert-photo-tag" data-i18n="cert-tag-cert">Сертификат</span>
+              <span class="cert-photo-name">ЕАС</span>
+            </div>
+            <span class="cert-photo-link" data-i18n="cert-eas-link">Открыть PDF →</span>
+          </div>
+        </a>
+        <div class="cert-photo-card">
+          <div class="cert-photo-img-wrap">
+            <img src="assets/certs/doverennost.png" alt="Доверенность" loading="lazy">
+          </div>
+          <div class="cert-photo-footer">
+            <div>
+              <span class="cert-photo-tag" data-i18n="cert-tag-cert">Документ</span>
+              <span class="cert-photo-name" data-i18n="cert-doc-name">Доверенность</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust badges row -->
+      <div class="cert-trust-row">
+        <div class="cert-trust-item">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <div>
+            <span class="cert-trust-name" data-i18n="badge-halal">Халяль</span>
+            <p data-i18n="cert-halal-desc">Соответствие исламским стандартам производства</p>
+          </div>
+        </div>
+        <div class="cert-trust-item">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          <div>
+            <span class="cert-trust-name">ГОСТ</span>
+            <p data-i18n="cert-gost-desc">Соответствие государственным стандартам качества</p>
+          </div>
+        </div>
+        <div class="cert-trust-item">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 22c0-6.627 5.373-12 12-12 3.313 0 6.313 1.343 8.485 3.515"/><path d="M22 2s-8 2-12 8-8 12-8 12"/></svg>
+          <div>
+            <span class="cert-trust-name" data-i18n="badge-gmo">Без ГМО</span>
+            <p data-i18n="cert-gmo-desc">Натуральный состав без ГМО компонентов</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     MARKETING SUPPORT
+═══════════════════════════════════ -->
+<section id="marketing" class="section" style="background:#1A0E06">
+  <div class="drip" style="background:linear-gradient(90deg,transparent,rgba(255,200,120,.15) 30%,rgba(255,200,120,.25) 50%,rgba(255,200,120,.15) 70%,transparent)"></div>
+  <div class="container">
+    <span class="s-label fi" style="color:rgba(255,200,120,.55)" data-i18n="mkt-label">Для партнёров</span>
+    <h2 class="s-title fi" style="color:#fff" data-i18n="mkt-title" data-i18n-html>Мы не просто поставляем — <span style="color:var(--gold)">мы помогаем продавать</span></h2>
+    <div class="mkt-layout fi">
+
+      <!-- Row 1: two image cards 16:10 -->
+      <div class="mkt-images-row">
+        <div class="mkt-card">
+          <span class="mkt-num">01</span>
+          <div class="mkt-img-wrap">
+            <img src="assets/marketing/стеллаж-new.jpg" alt="Оформление магазина" loading="lazy">
+          </div>
+          <div class="mkt-body">
+            <h3 data-i18n="mkt-c1-title">Оформление магазина</h3>
+            <p data-i18n="mkt-c1-desc">Брендированные стеллажи и POS-материалы для вашей торговой точки.</p>
+          </div>
+        </div>
+        <div class="mkt-card">
+          <span class="mkt-num">02</span>
+          <div class="mkt-img-wrap">
+            <img src="assets/marketing/баннеры-new.jpg" alt="Баннеры" loading="lazy">
+          </div>
+          <div class="mkt-body">
+            <h3 data-i18n="mkt-c2-title">Баннеры</h3>
+            <p data-i18n="mkt-c2-desc">Готовые рекламные материалы для офлайн и онлайн продвижения.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Content — single Short 9:16 -->
+      <div class="mkt-card mkt-card-content">
+        <span class="mkt-num">03</span>
+        <div class="mkt-content-row">
+          <div class="mkt-short-single">
+            <iframe src="https://www.youtube.com/embed/zG0j61vxSO4" title="Контент Tamima" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="mkt-body">
+            <h3 data-i18n="mkt-c3-title">Контент</h3>
+            <p data-i18n="mkt-c3-desc">Профессиональные видео и фото для ваших соцсетей и маркетплейсов.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: Bloggers — 4 Shorts in 9:16 grid -->
+      <div class="mkt-card mkt-card-shorts">
+        <span class="mkt-num">04</span>
+        <div class="mkt-body mkt-body-top">
+          <h3 data-i18n="mkt-c4-title">Работа с блогерами</h3>
+          <p data-i18n="mkt-c4-desc">Нативные обзоры в YouTube Shorts — охват тысячи потенциальных покупателей.</p>
+        </div>
+        <div class="mkt-shorts-grid">
+          <div class="mkt-short-item"><iframe src="https://www.youtube.com/embed/-fFfxV4W5sw" title="Shorts 1" allowfullscreen loading="lazy"></iframe></div>
+          <div class="mkt-short-item"><iframe src="https://www.youtube.com/embed/dQc6GOt0X8k" title="Shorts 2" allowfullscreen loading="lazy"></iframe></div>
+          <div class="mkt-short-item"><iframe src="https://www.youtube.com/embed/iWqof_IOvMs" title="Shorts 3" allowfullscreen loading="lazy"></iframe></div>
+          <div class="mkt-short-item"><iframe src="https://www.youtube.com/embed/3lkC61881Oc" title="Shorts 4" allowfullscreen loading="lazy"></iframe></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     SUPPORT
+═══════════════════════════════════ -->
+<section id="support" class="section" style="background:#FFF8F2">
+  <div class="drip"></div>
+  <div class="container">
+    <div class="support-layout">
+      <div class="support-text">
+        <span class="s-label fi" data-i18n="sup-label">Всегда на связи</span>
+        <h2 class="s-title fi" data-i18n="sup-title" data-i18n-html>Поддержка, которая <span style="color:var(--amber)">рядом</span></h2>
+        <p class="s-sub fi" style="max-width:460px" data-i18n="sup-sub">Мы не исчезаем после отгрузки. Помогаем с продажами, отвечаем на вопросы, решаем проблемы — в WhatsApp, по телефону, лично.</p>
+        <ul class="support-list fi">
+          <li data-i18n="sup-li1">Персональный менеджер</li>
+          <li data-i18n="sup-li2">Ответ в течение 30 минут</li>
+          <li data-i18n="sup-li3">Помощь с возвратами и обменом</li>
+          <li data-i18n="sup-li4">Консультации по ассортименту</li>
+        </ul>
+      </div>
+      <div class="support-visual fi">
+        <div class="support-chat-mockup">
+          <div class="chat-bubble chat-them">Здравствуйте! Какой товар лучше для аптечной сети?</div>
+          <div class="chat-bubble chat-us">Добрый день! Для аптек рекомендуем пасты с чёрным тмином и прополисом — самые ходовые позиции</div>
+          <div class="chat-bubble chat-them">Отлично, оформим заказ!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     PARTNER REVIEWS
+═══════════════════════════════════ -->
+<section id="partners" class="section" style="background:#fff">
+  <div class="drip"></div>
+  <div class="container">
+    <span class="s-label fi" data-i18n="par-label">Партнёры о нас</span>
+    <h2 class="s-title fi" data-i18n="par-title" data-i18n-html>Отзывы <span style="color:var(--amber)">партнёров</span></h2>
+    <p class="s-sub fi" data-i18n="par-sub">Нам доверяют предприниматели по всему Казахстану</p>
+    <div class="partner-carousel" id="partner-carousel">
+      <div class="partner-track" id="partner-track">
+        <div class="partner-card">
+          <div class="partner-quote">"Tamima — лучший поставщик медовых продуктов, с которым мы работали. Стабильное качество и отличный сервис."</div>
+          <div class="partner-info">
+            <div class="partner-avatar">А</div>
+            <div>
+              <div class="partner-name">Айгуль К.</div>
+              <div class="partner-role">Владелица магазина, Алматы</div>
+            </div>
+          </div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-quote">"За 2 года ни одной жалобы от клиентов. Продукт продаёт себя сам."</div>
+          <div class="partner-info">
+            <div class="partner-avatar">М</div>
+            <div>
+              <div class="partner-name">Марат Т.</div>
+              <div class="partner-role">Сеть аптек, Астана</div>
+            </div>
+          </div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-quote">"Маркетинговая поддержка — это то, что отличает Tamima от других. Готовый контент и обучение."</div>
+          <div class="partner-info">
+            <div class="partner-avatar">Д</div>
+            <div>
+              <div class="partner-name">Даурен С.</div>
+              <div class="partner-role">Дистрибьютор, Шымкент</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-prev" data-carousel="partner" aria-label="Назад">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="carousel-dots" id="partner-dots"></div>
+        <button class="carousel-next" data-carousel="partner" aria-label="Вперёд">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     CTA
+═══════════════════════════════════ -->
+<section id="cta-s" class="section">
+  <div class="container">
+    <span class="s-label fi" data-i18n="cta-label">Остался один шаг</span>
+    <h2 class="s-title fi" data-i18n="cta-title">Напишите нам</h2>
+    <p class="s-sub fi" data-i18n="cta-sub">
+      Расскажем об условиях сотрудничества с Tamima.
+    </p>
+    <a href="https://wa.me/77076679110?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D0%BD%D0%BE%20%D1%81%D0%BE%D1%82%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE"
+       class="btn btn-white btn-lg fi" target="_blank" data-i18n="btn-wa">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Написать в WhatsApp
+    </a>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     FOOTER
+═══════════════════════════════════ -->
+<footer>
+  <div class="ft">
+    <!-- Watermark -->
+    <div class="ft-watermark" aria-hidden="true">TAMIMA</div>
+
+    <div class="ft-top">
+      <div class="ft-brand">
+        <img src="assets/img/logo.png" class="ft-logo-img" alt="Tamima">
+        <p class="ft-tagline" data-i18n="ft-tagline">Натуральные медовые продукты оптом из Казахстана</p>
+        <div class="ft-social-links">
+          <a href="https://www.instagram.com/tamimakz/" target="_blank" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://wa.me/77076679110" target="_blank" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="ft-nav">
+        <h4 data-i18n="ft-nav-title">Навигация</h4>
+        <a href="#why" data-i18n="ft-nav-about">О нас</a>
+        <a href="#catalog" data-i18n="ft-nav-catalog">Каталог</a>
+        <a href="#reviews" data-i18n="ft-nav-rev">Отзывы</a>
+        <a href="#cta-s" data-i18n="ft-nav-coop">Сотрудничество</a>
+      </div>
+      <div class="ft-contact">
+        <h4 data-i18n="ft-con-title">Контакты</h4>
+        <a href="tel:+77076679110">+7 707 667-91-10</a>
+        <a href="mailto:tamimakz@mail.ru">tamimakz@mail.ru</a>
+        <span data-i18n="ft-con-city">г. Астана, Казахстан</span>
+      </div>
+      <div class="ft-cta">
+        <h4 data-i18n="ft-cta-title">Начать сотрудничество</h4>
+        <a href="https://wa.me/77076679110?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D0%BD%D0%BE%20%D1%81%D0%BE%D1%82%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE"
+           class="btn btn-wa btn-sm" target="_blank" data-i18n="btn-wa">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Написать в WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <div class="ft-copy" data-i18n="ft-copy">© 2026 Tamima. Все права защищены.</div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════
+     PRODUCT MODAL
+═══════════════════════════════════ -->
+<div id="prod-modal" class="prod-modal-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="prod-modal-card">
+    <button class="prod-modal-close" id="prod-modal-close" aria-label="Закрыть">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="prod-modal-img-wrap" id="prod-modal-img-wrap">
+      <img id="prod-modal-img" src="" alt="">
+    </div>
+    <div class="prod-modal-body">
+      <div class="prod-modal-cat" id="prod-modal-cat"></div>
+      <h3 class="prod-modal-name" id="prod-modal-name"></h3>
+      <p class="prod-modal-short" id="prod-modal-short"></p>
+      <p class="prod-modal-full" id="prod-modal-full"></p>
+      <a class="btn btn-amber prod-modal-cta" id="prod-modal-cta" target="_blank" data-i18n="modal-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Узнать подробнее
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Floating WhatsApp button -->
+<a class="wa-float" href="https://wa.me/77076679110?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D0%BD%D0%BE%20%D1%81%D0%BE%D1%82%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+  <span class="wa-float-label">WhatsApp</span>
+</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/products.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

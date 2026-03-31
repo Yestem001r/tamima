@@ -1,0 +1,10 @@
+# Large files
+assets/video/
+*.DS_Store
+.claude/
+
+# Original uncompressed images (keep .jpg versions)
+catalog/*.png
+catalog/*.jpeg
+assets/why/*.png
+assets/marketing/*.png
