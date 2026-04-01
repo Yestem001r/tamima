@@ -691,6 +691,13 @@ nav a.active::after {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; display: block;
 }
+/* Dark gradient overlay hides YouTube Shorts UI on thumbnails */
+.yt-facade::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to bottom, rgba(0,0,0,.5) 0%, transparent 22%, transparent 72%, rgba(0,0,0,.55) 100%);
+  pointer-events: none;
+}
 .yt-facade::after {
   content: '';
   position: absolute; top: 50%; left: 50%;
@@ -705,6 +712,9 @@ nav a.active::after {
   transform: translate(-50%, -50%) scale(1.1);
   background-color: rgba(196,122,16,.85);
 }
+.yt-facade.yt-playing::before,
+.yt-facade.yt-playing::after { display: none; }
+.yt-facade.yt-playing { cursor: default; }
 
 /* Swipe hint */
 .review-swipe-hint {
