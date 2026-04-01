@@ -682,6 +682,30 @@ nav a.active::after {
 }
 .review-name { padding: 14px 16px; font-size: 13px; font-weight: 700; color: #1A0E06; text-align: center; }
 
+/* YouTube facade — lazy load */
+.yt-facade {
+  cursor: pointer;
+  position: relative;
+}
+.yt-facade img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.yt-facade::after {
+  content: '';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px; height: 56px;
+  background: rgba(0,0,0,.65) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") center/24px no-repeat;
+  border-radius: 50%;
+  z-index: 2;
+  transition: transform .2s, background-color .2s;
+}
+.yt-facade:hover::after {
+  transform: translate(-50%, -50%) scale(1.1);
+  background-color: rgba(196,122,16,.85);
+}
+
 /* Swipe hint */
 .review-swipe-hint {
   display: flex; align-items: center; justify-content: center; gap: 8px;

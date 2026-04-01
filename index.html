@@ -15,8 +15,13 @@
 
   <title>Tamima — Медовые продукты оптом</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://www.youtube.com">
+  <link rel="preconnect" href="https://i.ytimg.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
@@ -32,7 +37,7 @@
 <header id="hdr">
 
   <a href="#" class="logo">
-    <img src="assets/img/logo.png" class="logo-img" alt="Tamima" loading="eager" fetchpriority="high" decoding="async">
+    <img src="assets/img/logo.png" class="logo-img" alt="Tamima" width="592" height="370" loading="eager" fetchpriority="high" decoding="async">
   </a>
 
   <nav>
@@ -118,15 +123,15 @@
             <span class="hbadge-label" data-i18n="badge-halal">Халяль</span>
           </div>
           <div class="hbadge-lg" title="Сделано в Казахстане">
-            <div class="hbadge-icon"><img src="assets/img/badge-kz.png" alt="Сделано в Казахстане"></div>
+            <div class="hbadge-icon"><img src="assets/img/badge-kz.png" alt="Сделано в Казахстане" width="144" height="144"></div>
             <span class="hbadge-label" data-i18n="badge-kz">Сделано в КЗ</span>
           </div>
           <div class="hbadge-lg" title="ЕАС">
-            <div class="hbadge-icon"><img src="assets/img/badge-eac.png" alt="ЕАС"></div>
+            <div class="hbadge-icon"><img src="assets/img/badge-eac.png" alt="ЕАС" width="537" height="538"></div>
             <span class="hbadge-label" data-i18n="badge-eac">ЕАС</span>
           </div>
           <div class="hbadge-lg" title="Без ГМО">
-            <div class="hbadge-icon"><img src="assets/img/badge-gmo.png" alt="Без ГМО"></div>
+            <div class="hbadge-icon"><img src="assets/img/badge-gmo.png" alt="Без ГМО" width="144" height="144"></div>
             <span class="hbadge-label" data-i18n="badge-gmo">Без ГМО</span>
           </div>
         </div>
@@ -140,7 +145,7 @@
       <div class="hvc-frame">
         <iframe
           class="hvc-iframe"
-          src="https://www.youtube.com/embed/wlP5KL3Ene4?autoplay=1&mute=1&loop=1&playlist=wlP5KL3Ene4&controls=0&showinfo=0&rel=0&modestbranding=1"
+          data-src="https://www.youtube.com/embed/wlP5KL3Ene4?autoplay=1&mute=1&loop=1&playlist=wlP5KL3Ene4&controls=0&showinfo=0&rel=0&modestbranding=1"
           allow="autoplay; fullscreen"
           allowfullscreen
           title="Tamima видео"
@@ -170,7 +175,7 @@
     <div class="why-grid">
       <div class="wc">
         <div class="wc-img">
-          <img src="assets/why/травники 250 лет.jpg" alt="Рецепты 250 лет" loading="lazy" decoding="async">
+          <img src="assets/why/травники 250 лет.jpg" alt="Рецепты 250 лет" width="800" height="597" loading="lazy" decoding="async">
         </div>
         <div class="wc-n">01</div>
         <h3 data-i18n="why-h1">Рецепты 250 лет</h3>
@@ -178,7 +183,7 @@
       </div>
       <div class="wc">
         <div class="wc-img">
-          <img src="assets/why/мед.jpg" alt="Зрелый мёд" loading="lazy" decoding="async">
+          <img src="assets/why/мед.jpg" alt="Зрелый мёд" width="800" height="600" loading="lazy" decoding="async">
         </div>
         <div class="wc-n">02</div>
         <h3 data-i18n="why-h2">Зрелый мёд</h3>
@@ -186,7 +191,7 @@
       </div>
       <div class="wc">
         <div class="wc-img">
-          <img src="assets/why/травники.jpg" alt="Легальный сбор" loading="lazy" decoding="async">
+          <img src="assets/why/травники.jpg" alt="Легальный сбор" width="800" height="600" loading="lazy" decoding="async">
         </div>
         <div class="wc-n">03</div>
         <h3 data-i18n="why-h3">Легальный сбор</h3>
@@ -279,21 +284,15 @@
     <div class="review-carousel" id="review-carousel">
       <div class="review-track" id="review-track">
         <div class="review-card review-card-real">
-          <div class="review-video">
-            <iframe src="https://www.youtube.com/embed/eYknFWNTYUw" title="Отзыв клиента" allowfullscreen loading="lazy"></iframe>
-          </div>
+          <div class="review-video yt-facade" data-vid="eYknFWNTYUw" data-title="Отзыв клиента"></div>
           <p class="review-name">Видео-отзыв</p>
         </div>
         <div class="review-card review-card-real">
-          <div class="review-video">
-            <iframe src="https://www.youtube.com/embed/D0Av6MA8v4U" title="Отзыв клиента" allowfullscreen loading="lazy"></iframe>
-          </div>
+          <div class="review-video yt-facade" data-vid="D0Av6MA8v4U" data-title="Отзыв клиента"></div>
           <p class="review-name">Видео-отзыв</p>
         </div>
         <div class="review-card review-card-real">
-          <div class="review-video">
-            <iframe src="https://www.youtube.com/embed/Guy7eHH7KhY" title="Отзыв клиента" allowfullscreen loading="lazy"></iframe>
-          </div>
+          <div class="review-video yt-facade" data-vid="Guy7eHH7KhY" data-title="Отзыв клиента"></div>
           <p class="review-name">Видео-отзыв</p>
         </div>
       </div>
@@ -323,16 +322,12 @@
     <p class="s-sub fi" data-i18n="prod-sub">Собственное производство в Казахстане. Полный цикл от сырья до упаковки.</p>
     <div class="prod-videos">
       <div class="prod-video-card fi">
-        <div class="prod-video-frame prod-video-916">
-          <iframe src="https://www.youtube.com/embed/QltXD5kVx_0" title="Производство Tamima" allowfullscreen loading="lazy"></iframe>
-        </div>
+        <div class="prod-video-frame prod-video-916 yt-facade" data-vid="QltXD5kVx_0" data-title="Производство Tamima"></div>
         <h3 data-i18n="prod-h1">Наш цех</h3>
         <p data-i18n="prod-d1">Современное оборудование и строгий контроль качества</p>
       </div>
       <div class="prod-video-card fi">
-        <div class="prod-video-frame prod-video-916">
-          <iframe src="https://www.youtube.com/embed/xAW3qBNtELU" title="Процесс создания" allowfullscreen loading="lazy"></iframe>
-        </div>
+        <div class="prod-video-frame prod-video-916 yt-facade" data-vid="xAW3qBNtELU" data-title="Процесс создания"></div>
         <h3 data-i18n="prod-h2">От сырья до продукта</h3>
         <p data-i18n="prod-d2">Каждый этап под контролем технологов</p>
       </div>
@@ -356,7 +351,7 @@
       <div class="cert-photos">
         <a href="assets/certs/eas-tamima.pdf" target="_blank" class="cert-photo-card cert-photo-main">
           <div class="cert-photo-img-wrap">
-            <img src="assets/certs/cert-eas.png" alt="ЕАС Декларация о соответствии" loading="lazy">
+            <img src="assets/certs/cert-eas.png" alt="ЕАС Декларация о соответствии" width="422" height="600" loading="lazy">
           </div>
           <div class="cert-photo-footer">
             <div>
@@ -368,7 +363,7 @@
         </a>
         <div class="cert-photo-card">
           <div class="cert-photo-img-wrap">
-            <img src="assets/certs/doverennost.png" alt="Доверенность" loading="lazy">
+            <img src="assets/certs/doverennost.png" alt="Доверенность" width="425" height="600" loading="lazy">
           </div>
           <div class="cert-photo-footer">
             <div>
@@ -428,7 +423,7 @@
         <div class="mkt-card">
           <span class="mkt-num">01</span>
           <div class="mkt-img-wrap">
-            <img src="assets/marketing/стеллаж-new.jpg" alt="Оформление магазина" loading="lazy">
+            <img src="assets/marketing/стеллаж-new.jpg" alt="Оформление магазина" width="800" height="597" loading="lazy">
           </div>
           <div class="mkt-body">
             <h3 data-i18n="mkt-c1-title">Оформление магазина</h3>
@@ -438,7 +433,7 @@
         <div class="mkt-card">
           <span class="mkt-num">02</span>
           <div class="mkt-img-wrap">
-            <img src="assets/marketing/баннеры-new.jpg" alt="Баннеры" loading="lazy">
+            <img src="assets/marketing/баннеры-new.jpg" alt="Баннеры" width="800" height="597" loading="lazy">
           </div>
           <div class="mkt-body">
             <h3 data-i18n="mkt-c2-title">Баннеры</h3>
@@ -451,9 +446,7 @@
       <div class="mkt-card mkt-card-content">
         <span class="mkt-num">03</span>
         <div class="mkt-content-row">
-          <div class="mkt-short-single">
-            <iframe src="https://www.youtube.com/embed/zG0j61vxSO4" title="Контент Tamima" allowfullscreen loading="lazy"></iframe>
-          </div>
+          <div class="mkt-short-single yt-facade" data-vid="zG0j61vxSO4" data-title="Контент Tamima"></div>
           <div class="mkt-body">
             <h3 data-i18n="mkt-c3-title">Контент</h3>
             <p data-i18n="mkt-c3-desc">Профессиональные видео и фото для ваших соцсетей и маркетплейсов.</p>
@@ -469,10 +462,10 @@
           <p data-i18n="mkt-c4-desc">Нативные обзоры в YouTube Shorts — охват тысячи потенциальных покупателей.</p>
         </div>
         <div class="mkt-shorts-grid">
-          <div class="mkt-short-item"><iframe src="https://www.youtube.com/embed/-fFfxV4W5sw" title="Shorts 1" allowfullscreen loading="lazy"></iframe></div>
-          <div class="mkt-short-item"><iframe src="https://www.youtube.com/embed/dQc6GOt0X8k" title="Shorts 2" allowfullscreen loading="lazy"></iframe></div>
-          <div class="mkt-short-item"><iframe src="https://www.youtube.com/embed/iWqof_IOvMs" title="Shorts 3" allowfullscreen loading="lazy"></iframe></div>
-          <div class="mkt-short-item"><iframe src="https://www.youtube.com/embed/3lkC61881Oc" title="Shorts 4" allowfullscreen loading="lazy"></iframe></div>
+          <div class="mkt-short-item yt-facade" data-vid="-fFfxV4W5sw" data-title="Shorts 1"></div>
+          <div class="mkt-short-item yt-facade" data-vid="dQc6GOt0X8k" data-title="Shorts 2"></div>
+          <div class="mkt-short-item yt-facade" data-vid="iWqof_IOvMs" data-title="Shorts 3"></div>
+          <div class="mkt-short-item yt-facade" data-vid="3lkC61881Oc" data-title="Shorts 4"></div>
         </div>
       </div>
 
@@ -596,7 +589,7 @@
 
     <div class="ft-top">
       <div class="ft-brand">
-        <img src="assets/img/logo.png" class="ft-logo-img" alt="Tamima">
+        <img src="assets/img/logo.png" class="ft-logo-img" alt="Tamima" width="592" height="370">
         <p class="ft-tagline" data-i18n="ft-tagline">Натуральные медовые продукты оптом из Казахстана</p>
         <div class="ft-social-links">
           <a href="https://www.instagram.com/tamimakz/" target="_blank" aria-label="Instagram">
@@ -666,10 +659,41 @@
   <span class="wa-float-label">WhatsApp</span>
 </a>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="js/products.js"></script>
-<script src="js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="js/products.js" defer></script>
+<script src="js/main.js" defer></script>
+
+<!-- YouTube facade: load iframe only on click -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Facade thumbnails
+  document.querySelectorAll('.yt-facade').forEach(function(el) {
+    var vid = el.dataset.vid;
+    var img = new Image();
+    img.src = 'https://i.ytimg.com/vi/' + vid + '/hqdefault.jpg';
+    img.alt = el.dataset.title || '';
+    img.loading = 'lazy';
+    el.prepend(img);
+    el.addEventListener('click', function() {
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + vid + '?autoplay=1';
+      iframe.allow = 'autoplay; encrypted-media';
+      iframe.allowFullscreen = true;
+      iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none';
+      el.innerHTML = '';
+      el.appendChild(iframe);
+    });
+  });
+  // Lazy-load hero iframe after page settles
+  var heroIframe = document.querySelector('.hvc-iframe[data-src]');
+  if (heroIframe) {
+    setTimeout(function() {
+      heroIframe.src = heroIframe.dataset.src;
+    }, 1500);
+  }
+});
+</script>
 
 </body>
 </html>
