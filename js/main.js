@@ -189,17 +189,17 @@
       }
     });
 
-    /* After-hero waypoints — bee is the site guide */
+    /* After-hero waypoints — bee stays at edges, avoids center/video content */
     const wpts = [
-      { sel: '#why',        d: [0.12, 0.50], m: [0.82, 0.46] },
-      { sel: '#catalog',    d: [0.82, 0.42], m: [0.14, 0.42] },
-      { sel: '#reviews',    d: [0.14, 0.45], m: [0.80, 0.45] },
-      { sel: '#production', d: [0.80, 0.50], m: [0.16, 0.48] },
-      { sel: '#certs',      d: [0.16, 0.42], m: [0.82, 0.42] },
-      { sel: '#marketing',  d: [0.84, 0.48], m: [0.14, 0.48] },
-      { sel: '#support',    d: [0.12, 0.50], m: [0.82, 0.46] },
-      { sel: '#partners',   d: [0.82, 0.44], m: [0.14, 0.44] },
-      { sel: '#cta-s',      d: [0.50, 0.52], m: [0.50, 0.52] },
+      { sel: '#why',        d: [0.06, 0.35], m: [0.92, 0.30] },
+      { sel: '#catalog',    d: [0.92, 0.28], m: [0.06, 0.28] },
+      { sel: '#reviews',    d: [0.08, 0.25], m: [0.93, 0.22] },
+      { sel: '#production', d: [0.93, 0.30], m: [0.07, 0.28] },
+      { sel: '#certs',      d: [0.06, 0.32], m: [0.92, 0.30] },
+      { sel: '#marketing',  d: [0.94, 0.25], m: [0.06, 0.22] },
+      { sel: '#support',    d: [0.07, 0.35], m: [0.93, 0.30] },
+      { sel: '#partners',   d: [0.93, 0.28], m: [0.07, 0.28] },
+      { sel: '#cta-s',      d: [0.08, 0.40], m: [0.92, 0.38] },
     ];
     wpts.forEach(({ sel, d, m }) => {
       ScrollTrigger.create({
@@ -781,6 +781,17 @@
   }
 
   initCarousel('#partner-track', '[data-carousel="partner"].carousel-prev', '[data-carousel="partner"].carousel-next', '#partner-dots');
+
+  /* ── Review swipe hint — hide after first scroll ── */
+  const revTrack = document.getElementById('review-track');
+  const swipeHint = document.getElementById('review-swipe-hint');
+  if (revTrack && swipeHint) {
+    revTrack.addEventListener('scroll', function() {
+      swipeHint.style.opacity = '0';
+      swipeHint.style.transition = 'opacity .4s';
+      setTimeout(function() { swipeHint.style.display = 'none'; }, 400);
+    }, { once: true });
+  }
 
   /* ── Sticky filter bar ── */
   const filterWrap = document.querySelector('.cat-filter-wrap');
