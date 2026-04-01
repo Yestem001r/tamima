@@ -671,7 +671,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.yt-facade').forEach(function(el) {
     var vid = el.dataset.vid;
     var img = new Image();
-    img.src = 'https://i.ytimg.com/vi/' + vid + '/hqdefault.jpg';
+    img.src = 'https://i.ytimg.com/vi/' + vid + '/maxresdefault.jpg';
+    img.onerror = function() { this.src = 'https://i.ytimg.com/vi/' + vid + '/hqdefault.jpg'; };
     img.alt = el.dataset.title || '';
     img.loading = 'lazy';
     el.prepend(img);
