@@ -275,7 +275,7 @@ nav a.active::after {
   transition: transform .22s, box-shadow .22s;
 }
 .hbadge-lg:hover .hbadge-icon { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,.22); }
-.hbadge-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.hbadge-icon img { width: 100%; height: 100%; object-fit: contain; display: block; transform: scale(1.12); }
 .hbadge-icon svg { display: block; }
 .hbadge-label {
   font-size: 9.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
