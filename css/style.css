@@ -683,13 +683,22 @@ nav a.active::after {
 
 /* Swipe hint */
 .review-swipe-hint {
-  display: flex; justify-content: center; margin-top: 16px;
-  color: rgba(196,122,16,.45);
-  animation: swipeHint 2s ease-in-out infinite;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-top: 18px;
+  color: var(--amber); font-size: 13px; font-weight: 700;
+  letter-spacing: .04em;
+  animation: swipeHint 2.2s ease-in-out infinite;
+}
+.review-swipe-hint .swipe-arrow {
+  animation: swipeArrow 2.2s ease-in-out infinite;
 }
 @keyframes swipeHint {
-  0%, 100% { transform: translateX(0); opacity: .5; }
-  50% { transform: translateX(14px); opacity: 1; }
+  0%, 100% { opacity: .55; }
+  50% { opacity: 1; }
+}
+@keyframes swipeArrow {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
 }
 
 .carousel-nav { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 24px; }
