@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  gsap.registerPlugin(ScrollTrigger);
+  /* GSAP removed — using CSS animations + IntersectionObserver */
 
   /* ──────────────────────────────────────
      2D BEE — Canvas illustration guide
@@ -163,33 +163,32 @@
     let beeAngle  = 0, wingPhase = 0;
     let lastTime  = performance.now();
 
-    function moveTo(xn, yn, dur) {
-      gsap.to(tgt, { x: xn, y: yn, duration: dur || 1.8, ease: 'power2.inOut' });
-    }
-    function moveInstant(xn, yn) { tgt.x = xn; tgt.y = yn; }
+    function moveTo(xn, yn) { tgt.x = xn; tgt.y = yn; }
 
     /* Entry fly-in */
-    gsap.delayedCall(1.6, () => {
+    setTimeout(() => {
       tgt.x = 1.5; tgt.y = -0.1;
       beeX = window.innerWidth * 1.5;
       beeY = window.innerHeight * -0.1;
       active = true;
       const mob = window.innerWidth < 800;
-      moveTo(mob ? 0.72 : 0.74, mob ? 0.22 : 0.30, 2.6);
-    });
+      moveTo(mob ? 0.72 : 0.74, mob ? 0.22 : 0.30);
+    }, 1600);
 
     /* Scroll-driven: within hero */
-    ScrollTrigger.create({
-      trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1.2,
-      onUpdate(self) {
-        const p = self.progress;
+    const heroEl = document.getElementById('hero');
+    if (heroEl) {
+      window.addEventListener('scroll', () => {
+        const r = heroEl.getBoundingClientRect();
+        if (r.bottom <= 0 || r.top >= window.innerHeight) return;
+        const p = Math.max(0, Math.min(1, -r.top / (r.height)));
         const mob = window.innerWidth < 800;
-        if (mob) moveInstant(0.78 - p * 0.5,  0.28 + p * 0.40);
-        else     moveInstant(0.80 - p * 0.62, 0.36 + p * 0.32);
-      }
-    });
+        if (mob) { tgt.x = 0.78 - p * 0.5;  tgt.y = 0.28 + p * 0.40; }
+        else     { tgt.x = 0.80 - p * 0.62; tgt.y = 0.36 + p * 0.32; }
+      }, { passive: true });
+    }
 
-    /* After-hero waypoints — bee stays at edges, avoids center/video content */
+    /* After-hero waypoints — bee stays at edges */
     const wpts = [
       { sel: '#why',        d: [0.06, 0.35], m: [0.92, 0.30] },
       { sel: '#catalog',    d: [0.92, 0.28], m: [0.06, 0.28] },
@@ -202,11 +201,14 @@
       { sel: '#cta-s',      d: [0.08, 0.40], m: [0.92, 0.38] },
     ];
     wpts.forEach(({ sel, d, m }) => {
-      ScrollTrigger.create({
-        trigger: sel, start: 'top 58%',
-        onEnter:     () => moveTo(...(window.innerWidth < 800 ? m : d)),
-        onEnterBack: () => moveTo(...(window.innerWidth < 800 ? m : d)),
-      });
+      const el = document.querySelector(sel);
+      if (!el) return;
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) moveTo(...(window.innerWidth < 800 ? m : d));
+        });
+      }, { threshold: 0.3 });
+      obs.observe(el);
     });
 
     /* ── Render loop ── */
@@ -256,30 +258,7 @@
     document.getElementById('hdr').classList.toggle('scrolled', window.scrollY > 20);
   }, { passive: true });
 
-  /* ──────────────────────────────────────
-     HERO ENTRANCE ANIMATIONS
-  ────────────────────────────────────── */
-
-  gsap.to('#hdr', { opacity: 1, duration: 0.55, delay: 0.1, ease: 'power2.out' });
-
-  // Hero tag, sub, actions — stagger fade-in
-  gsap.from('.hero-tag',     { opacity: 0, y: -10, duration: 0.6,  delay: 0.25, ease: 'power2.out' });
-  gsap.from('.hero-sub',     { opacity: 0, y: 18,  duration: 0.65, delay: 0.80, ease: 'power2.out' });
-  gsap.from('.hero-actions', { opacity: 0, y: 14,  duration: 0.6,  delay: 0.95, ease: 'power2.out' });
-  gsap.from('.hero-trust',   { opacity: 0, y: 12,  duration: 0.6,  delay: 1.15, ease: 'power2.out' });
-
-  // Hero title — dramatic clip-path sweep (wow entrance)
-  gsap.to('.hero-title', {
-    clipPath: 'inset(0 0% 0 0)',
-    duration: 1.1, delay: 0.35,
-    ease: 'power4.inOut'
-  });
-
-  // Hero video wrap — slide in from right
-  gsap.fromTo('#hero-video-wrap',
-    { opacity: 0, x: 60 },
-    { opacity: 1, x: 0, duration: 1.2, delay: 0.5, ease: 'power3.out' }
-  );
+  /* Hero entrance animations are now CSS @keyframes in style.css */
 
   /* ──────────────────────────────────────
      FLOATING HEX PARTICLES
@@ -493,6 +472,16 @@
       'par-label':'Партнёры о нас',
       'par-title':'Отзывы <span style="color:var(--amber)">партнёров</span>',
       'par-sub':'Нам доверяют предприниматели по всему Казахстану',
+      'par-q1':'"Tamima — лучший поставщик медовых продуктов, с которым мы работали. Стабильное качество и отличный сервис."',
+      'par-n1':'Айгуль К.','par-r1':'Владелица магазина, Алматы',
+      'par-q2':'"За 2 года ни одной жалобы от клиентов. Продукт продаёт себя сам."',
+      'par-n2':'Марат Т.','par-r2':'Сеть аптек, Астана',
+      'par-q3':'"Маркетинговая поддержка — это то, что отличает Tamima от других. Готовый контент и обучение."',
+      'par-n3':'Даурен С.','par-r3':'Дистрибьютор, Шымкент',
+      'chat-1':'Здравствуйте! Какой товар лучше для аптечной сети?',
+      'chat-2':'Добрый день! Для аптек рекомендуем пасты с чёрным тмином и прополисом — самые ходовые позиции',
+      'chat-3':'Отлично, оформим заказ!',
+      'rev-swipe':'Листайте',
       'cta-label':'Остался один шаг','cta-title':'Напишите нам',
       'cta-sub':'Расскажем об условиях сотрудничества с Tamima.',
       'ft-tagline':'Натуральные медовые продукты оптом из Казахстана',
@@ -501,15 +490,89 @@
       'ft-con-title':'Контакты','ft-con-city':'г. Астана, Казахстан',
       'ft-cta-title':'Начать сотрудничество','ft-copy':'© 2026 Tamima. Все права защищены.',
       'modal-pasta':'Медовая паста','modal-syrup':'Натуральный сироп','modal-cta':'Узнать подробнее',
+      'rev-name':'Видео-отзыв','rev-name-nurse':'Отзыв постоянной клиентки (мед. сестра)','rev-name-weight':'Отзыв: набор веса',
+    },
+    kz: {
+      'nav-about':'Біз туралы','nav-catalog':'Өнімдер','nav-coop':'Серіктестік',
+      'hero-tag-supply':'Көтерме жеткізу','hero-tag-kz':'Қазақстан',
+      'hero-title':'Денсаулығыңызға арналған<br><span class="hero-title-accent">табиғи шешім</span>',
+      'hero-sub':`Қазақстандық бал пасталары мен сироптары.<br>${VISIBLE_COUNT} позиция · Халал · ЕАС`,
+      'hero-certified':'Сертификатталған',
+      'badge-halal':'Халал','badge-kz':'ҚР жасалған','badge-eac':'ЕАС','badge-gmo':'ГМО-сыз',
+      'btn-wa':'WhatsApp-қа жазу','btn-catalog':'Каталогты қарау →',
+      'why-label':'Неге Tamima',
+      'why-title':'Бізді <span style="color:var(--amber)">таңдаңыз</span>',
+      'why-sub':'Біз жай ғана жеткізуші емеспіз. Біз — нақты білімі бар өніммен серіктеспіз.',
+      'why-h1':'250 жылдық рецепттер','why-d1':'Құрамдарды 250 жылдан астам тәжірибесі бар шөп мамандары жасайды. Ұрпақтан ұрпаққа беріліп келе жатқан білім.',
+      'why-h2':'Піскен бал','why-d2':'Біз қажетті ылғалдылығы мен дұрыс консистенциясы бар балды пайдаланамыз. Қабаттаспайды, сақтау кезінде сапасын жоғалтпайды.',
+      'why-h3':'Заңды жинау','why-d3':'Шикізат орман билеті бойынша жиналады. Тексерулермен қатер жоқ, сұр жеткізулер жоқ, ашық шығу тегі.',
+      'cat-label':'Ассортимент',
+      'cat-title':`${VISIBLE_COUNT} <span style="color:var(--amber)">позиция</span>`,
+      'cat-sub':'Қазақстандық бал пасталары мен табиғи сироптар.',
+      'cat-price-btn':'Бағаны сұрау →','cat-download-btn':'Каталогты жүктеу',
+      'cat-filter-all':'Барлығы',
+      'cat-filter-heart':'Жүрек және тамырлар','cat-filter-weight':'Салмақ және зат алмасу','cat-filter-digestion':'АІЖ',
+      'cat-filter-men':'Ерлерге','cat-filter-women':'Әйелдерге','cat-filter-immunity':'Иммунитет','cat-filter-habits':'Зиянды әдеттер',
+      'cat-more-btn':'Тағы көрсету',
+      'rev-label':'Пікірлер',
+      'rev-title':'Клиенттер <span style="color:var(--amber)">не айтады</span>',
+      'rev-sub':'Біздің сатып алушылардың нақты пікірлері','rev-soon':'Бейне жақында',
+      'rev-name':'Бейне-пікір','rev-name-nurse':'Тұрақты клиенттің пікірі (медбике)','rev-name-weight':'Пікір: салмақ қосу',
+      'prod-label':'Өндіріс',
+      'prod-title':'Бізбен бірге <span style="color:var(--amber)">тұрақтылық</span>',
+      'prod-sub':'Қазақстандағы меншікті өндіріс. Шикізаттан бастап орауға дейінгі толық цикл.',
+      'prod-vid1':'Өндірістен бейне','prod-h1':'Біздің цех','prod-d1':'Заманауи жабдық және сапаны қатаң бақылау',
+      'prod-vid2':'Жасау процесі','prod-h2':'Шикізаттан өнімге дейін','prod-d2':'Әрбір кезең технологтардың бақылауында',
+      'cert-label':'Сапасы расталған',
+      'cert-title':'Біздің <span style="color:var(--amber)">сертификаттарымыз</span>',
+      'cert-sub':'Толық құжаттар пакеті. Халал, ЕАС, МЕМСТ — барлығы ашық.',
+      'cert-tag-cert':'Сертификат','cert-tag-std':'Стандарт','cert-tag-comp':'Құрамы',
+      'cert-eas-link':'PDF ашу →','cert-doc-name':'Сенімхат',
+      'cert-halal-desc':'Өндіріс пен өнім құрамының ислам стандарттарына сәйкестігі',
+      'cert-gost-desc':'Өндіріс мемлекеттік сапа стандарттарына сәйкес',
+      'cert-gmo-desc':'Генетикалық модификацияланған компоненттерсіз табиғи құрам',
+      'mkt-label':'Серіктестер үшін',
+      'mkt-title':'Біз жай ғана жеткізіп қоймаймыз — <span style="color:var(--gold)">сатуға көмектесеміз</span>',
+      'mkt-c1-title':'Дүкенді безендіру','mkt-c1-desc':'Сіздің сауда нүктеңізге брендтік стеллаждар мен POS-материалдар.',
+      'mkt-c2-title':'Баннерлер','mkt-c2-desc':'Офлайн және онлайн жарнамаға дайын материалдар.',
+      'mkt-c3-title':'Контент','mkt-c3-desc':'Әлеуметтік желілер мен маркетплейстер үшін кәсіби бейнелер мен фотолар.',
+      'mkt-c4-title':'Блогерлермен жұмыс','mkt-c4-desc':'YouTube Shorts-тағы нативті шолулар — мыңдаған әлеуетті сатып алушыларға қол жеткізу.',
+      'sup-label':'Әрдайым байланыста',
+      'sup-title':'Жаныңызда болатын <span style="color:var(--amber)">қолдау</span>',
+      'sup-sub':'Біз жүк жөнелтілгеннен кейін жоғалып кетпейміз. Сатуға көмектесеміз, сұрақтарға жауап береміз, мәселелерді шешеміз — WhatsApp арқылы, телефон арқылы, жеке.',
+      'sup-li1':'Жеке менеджер','sup-li2':'30 минут ішінде жауап',
+      'sup-li3':'Қайтару мен алмастыруға көмек','sup-li4':'Ассортимент бойынша кеңес',
+      'par-label':'Серіктестер біз туралы',
+      'par-title':'Серіктестердің <span style="color:var(--amber)">пікірлері</span>',
+      'par-sub':'Бізге Қазақстан бойынша кәсіпкерлер сенеді',
+      'par-q1':'"Tamima — біз жұмыс істеген ең жақсы бал өнімдерін жеткізуші. Тұрақты сапа және тамаша сервис."',
+      'par-n1':'Айгүл Қ.','par-r1':'Дүкен иесі, Алматы',
+      'par-q2':'"2 жыл ішінде клиенттерден бір де бір шағым болған жоқ. Өнім өзін-өзі сатады."',
+      'par-n2':'Марат Т.','par-r2':'Дәріхана желісі, Астана',
+      'par-q3':'"Маркетингтік қолдау — міне, Tamima-ны басқалардан ерекшелендіретін нәрсе. Дайын контент және оқыту."',
+      'par-n3':'Дәурен С.','par-r3':'Дистрибьютор, Шымкент',
+      'chat-1':'Сәлеметсіз бе! Дәріхана желісіне қандай өнім жақсы?',
+      'chat-2':'Қайырлы күн! Дәріханаларға қара зире мен прополис қосылған пасталарды ұсынамыз — ең жүрдек позициялар',
+      'chat-3':'Тамаша, тапсырыс беремін!',
+      'rev-swipe':'Сырғыту',
+      'cta-label':'Бір ғана қадам қалды','cta-title':'Бізге жазыңыз',
+      'cta-sub':'Tamima-мен серіктестік шарттары туралы айтып береміз.',
+      'ft-tagline':'Қазақстандық табиғи көтерме бал өнімдері',
+      'ft-nav-title':'Навигация','ft-nav-about':'Біз туралы','ft-nav-catalog':'Каталог',
+      'ft-nav-rev':'Пікірлер','ft-nav-coop':'Серіктестік',
+      'ft-con-title':'Байланыс','ft-con-city':'Астана қ., Қазақстан',
+      'ft-cta-title':'Серіктестікті бастау','ft-copy':'© 2026 Tamima. Барлық құқықтар қорғалған.',
+      'modal-pasta':'Бал паста','modal-syrup':'Табиғи сироп','modal-cta':'Толығырақ білу',
     }
   };
 
   let currentLang = 'ru';
 
   function applyLang(lang) {
+    if (!I18N[lang]) lang = 'ru';
     currentLang = lang;
     const t = I18N[lang];
-    if (!t) return;
+    document.documentElement.lang = lang === 'kz' ? 'kk' : 'ru';
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.dataset.i18n;
       const val = t[key];
@@ -532,9 +595,25 @@
         }
       }
     });
+    // Sync all lang-switch buttons
+    document.querySelectorAll('.lang-switch .lang-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+    try { localStorage.setItem('tamimaLang', lang); } catch (e) {}
   }
 
-  applyLang('ru');
+  // Restore saved language or default to RU
+  let savedLang = 'ru';
+  try { savedLang = localStorage.getItem('tamimaLang') || 'ru'; } catch (e) {}
+  applyLang(savedLang);
+
+  // Wire up language switch buttons
+  document.querySelectorAll('.lang-switch .lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang;
+      if (lang && lang !== currentLang) applyLang(lang);
+    });
+  });
 
   /* ──────────────────────────────────────
      CATALOG
