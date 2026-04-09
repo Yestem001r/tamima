@@ -600,6 +600,18 @@
       b.classList.toggle('active', b.dataset.lang === lang);
     });
     try { localStorage.setItem('tamimaLang', lang); } catch (e) {}
+    // Re-render catalog cards so bilingual product fields update.
+    // Guarded: only re-render if cards already exist (initial call happens before first render).
+    const catGrid = document.getElementById('cat-grid');
+    if (catGrid && catGrid.querySelector('.pc')) {
+      renderCatalog(false);
+    }
+    // Re-render modal content if it's currently open
+    const modalEl = document.getElementById('prod-modal');
+    if (modalEl && modalEl.classList.contains('open')) {
+      const openIdx = modalEl.dataset.openIdx;
+      if (openIdx != null && PRODUCTS[+openIdx]) openModal(PRODUCTS[+openIdx]);
+    }
   }
 
   // Restore saved language or default to RU
@@ -657,6 +669,13 @@
     <circle cx="24" cy="24" r="4" fill="#C47A10" opacity="0.5"/>
   </svg>`;
 
+  // Helper: read a bilingual field ({ru, kz}) with RU fallback
+  function pick(field) {
+    if (field == null) return '';
+    if (typeof field === 'string') return field;
+    return field[currentLang] || field.ru || '';
+  }
+
   function renderCatalog(appendMode = false) {
     const grid    = document.getElementById('cat-grid');
     const moreBtn = document.getElementById('cat-more');
@@ -679,17 +698,19 @@
 
     const newEls = toRender.map(idx => {
       const p = PRODUCTS[idx];
+      const pName  = pick(p.name);
+      const pShort = pick(p.shortDesc);
       const card = document.createElement('div');
       card.className = 'pc';
       card.dataset.idx = String(idx);
       card.setAttribute('role', 'button');
       card.setAttribute('tabindex', '0');
-      card.setAttribute('aria-label', p.name);
+      card.setAttribute('aria-label', pName);
       card.innerHTML = `
-        <div class="pc-img">${p.img ? `<img src="${p.img}" alt="${p.name}" loading="lazy">` : placeholderSVG}</div>
+        <div class="pc-img">${p.img ? `<img src="${p.img}" alt="${pName}" loading="lazy">` : placeholderSVG}</div>
         <div class="pc-body">
-          <div class="pc-name">${p.name}</div>
-          <div class="pc-desc">${p.shortDesc}</div>
+          <div class="pc-name">${pName}</div>
+          <div class="pc-desc">${pShort}</div>
         </div>`;
       card.addEventListener('click', () => openModal(PRODUCTS[+card.dataset.idx]));
       card.addEventListener('keydown', e => {
@@ -757,9 +778,13 @@
     const img     = document.getElementById('prod-modal-img');
     const hasImg  = !!product.img;
 
+    const pName  = pick(product.name);
+    const pShort = pick(product.shortDesc);
+    const pFull  = pick(product.fullDesc);
+
     if (hasImg) {
       img.src = product.img;
-      img.alt = product.name;
+      img.alt = pName;
       imgWrap.style.display = '';
       modalCard.classList.remove('no-img');
     } else {
@@ -769,13 +794,18 @@
     }
 
     const t = I18N[currentLang];
-    document.getElementById('prod-modal-name').textContent  = product.name;
+    document.getElementById('prod-modal-name').textContent  = pName;
     document.getElementById('prod-modal-cat').textContent   = product.cat === 'pasta' ? (t['modal-pasta'] || 'Медовая паста') : (t['modal-syrup'] || 'Натуральный сироп');
-    document.getElementById('prod-modal-short').textContent = product.shortDesc;
-    document.getElementById('prod-modal-full').innerHTML  = product.fullDesc;
+    document.getElementById('prod-modal-short').textContent = pShort;
+    document.getElementById('prod-modal-full').innerHTML    = pFull;
 
-    const waMsg = encodeURIComponent('Здравствуйте! Хочу узнать подробнее о товаре Tamima "' + product.name + '"');
+    // Always use Russian name in WhatsApp message for unambiguous product identification
+    const ruName = (product.name && product.name.ru) || pName;
+    const waMsg = encodeURIComponent('Здравствуйте! Хочу узнать подробнее о товаре Tamima "' + ruName + '"');
     document.getElementById('prod-modal-cta').href = 'https://wa.me/77076679110?text=' + waMsg;
+
+    // Remember which product is open so applyLang() can refresh modal content on language switch
+    modal.dataset.openIdx = String(PRODUCTS.indexOf(product));
 
     modal.removeAttribute('aria-hidden');
     modal.classList.add('open');
