@@ -276,6 +276,8 @@ nav a.active::after {
   letter-spacing: -.025em; text-transform: uppercase;
   color: #fff;
   text-shadow: 0 2px 12px rgba(0,0,0,.12);
+  overflow-wrap: break-word;
+  hyphens: auto;
   /* GSAP clip-path reveal starts here */
   clip-path: inset(0 100% 0 0);
 }
@@ -1089,7 +1091,7 @@ nav a.active::after {
   }
   .hero-video-wrap { order: -1; min-height: 0; }
   .hvc-frame { width: 54vw; max-width: 220px; border-radius: 22px; }
-  .hero-title { font-size: clamp(32px, 9.5vw, 52px); }
+  .hero-title { font-size: clamp(26px, 7.6vw, 44px); letter-spacing: -.03em; }
   .hero-sub { font-size: 13.5px; }
   .btn-lg { padding: 13px 28px; font-size: 12px; }
 

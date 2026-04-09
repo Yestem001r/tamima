@@ -495,7 +495,7 @@
     kz: {
       'nav-about':'Біз туралы','nav-catalog':'Өнімдер','nav-coop':'Серіктестік',
       'hero-tag-supply':'Көтерме жеткізу','hero-tag-kz':'Қазақстан',
-      'hero-title':'Денсаулығыңызға арналған<br><span class="hero-title-accent">табиғи шешім</span>',
+      'hero-title':'Денсаулығыңызға<br>арналған<br><span class="hero-title-accent">табиғи шешім</span>',
       'hero-sub':`Қазақстандық бал пасталары мен сироптары.<br>${VISIBLE_COUNT} позиция · Халал · ЕАС`,
       'hero-certified':'Сертификатталған',
       'badge-halal':'Халал','badge-kz':'ҚР жасалған','badge-eac':'ЕАС','badge-gmo':'ГМО-сыз',
